@@ -19,7 +19,6 @@ struct SettingsView: View {
         .navigationTitle("Settings View")
         .onAppear {
             appState.isShowingBottomTabView = false
-
         }
         .toolbar(appState.isShowingBottomTabView ? .visible : .hidden, for: .tabBar)
     }
