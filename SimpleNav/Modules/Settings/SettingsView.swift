@@ -15,18 +15,23 @@ struct SettingsView: View {
         VStack {
             Text("Settings View")
         }
+        .padding(.bottom, appState.bottomTabViewSpacing)
         .navigationTitle("Settings View")
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            appState.isShowingBottomTabBar = false
+            appState.isShowingBottomTabView = false
+
         }
-        .toolbar(appState.isShowingBottomTabBar ? .visible : .hidden, for: .tabBar)
+        .toolbar(appState.isShowingBottomTabView ? .visible : .hidden, for: .tabBar)
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
-            .environmentObject(AppState())
+        NavigationStack {
+            SettingsView()
+                .environmentObject(AppState())
+                .navBarAttributes()
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }

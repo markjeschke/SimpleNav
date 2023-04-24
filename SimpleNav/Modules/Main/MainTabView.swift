@@ -13,18 +13,16 @@ struct MainTabView: View {
 
     var body: some View {
         TabView {
-            NavigationStack {
-                HomeView()
-            }
+            HomeView()
             .tabItem {
-                Label("Home", systemImage: "house")
+                Label("Home",
+                      systemImage: "house")
             }
             .tag(0)
-            NavigationStack {
-                SecondView()
-            }
+            SecondView()
             .tabItem {
-                Label("Second View", systemImage: "02.circle")
+                Label("Second View",
+                      systemImage: "02.circle")
             }
             .tag(1)
         }

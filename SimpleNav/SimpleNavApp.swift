@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct SimpleNavApp: App {
+
+    // Make this AppState class instance available from the parent SwiftUI view (MainTabView) and its children.
+    @StateObject private var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
+                .environmentObject(appState)
         }
     }
 }

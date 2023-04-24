@@ -9,5 +9,8 @@ import Foundation
 
 @MainActor
 class AppState: ObservableObject {
-    @Published var isShowingBottomTabBar: Bool = true
+
+    let bottomTabViewSpacing: CGFloat = 45
+    @Published var isShowingBottomTabView: Bool = true
+
 }

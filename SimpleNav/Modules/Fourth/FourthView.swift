@@ -15,12 +15,12 @@ struct FourthView: View {
         VStack {
             Text("Fourth View")
         }
+        .padding(.bottom, appState.bottomTabViewSpacing)
         .navigationTitle("Fourth View")
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            appState.isShowingBottomTabBar = false
+            appState.isShowingBottomTabView = false
         }
-        .toolbar(appState.isShowingBottomTabBar ? .visible : .hidden, for: .tabBar)
+        .toolbar(appState.isShowingBottomTabView ? .visible : .hidden, for: .tabBar)
     }
 }
 
@@ -29,6 +29,8 @@ struct FourthView_Previews: PreviewProvider {
         NavigationStack {
             FourthView()
                 .environmentObject(AppState())
+                .navBarAttributes()
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

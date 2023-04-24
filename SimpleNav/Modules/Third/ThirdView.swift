@@ -15,12 +15,13 @@ struct ThirdView: View {
         VStack {
             Text("Third View")
         }
+        .padding(.bottom, appState.bottomTabViewSpacing)
         .navigationTitle("Third View")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            appState.isShowingBottomTabBar = false
+            appState.isShowingBottomTabView = false
         }
-        .toolbar(appState.isShowingBottomTabBar ? .visible : .hidden, for: .tabBar)
+        .toolbar(appState.isShowingBottomTabView ? .visible : .hidden, for: .tabBar)
     }
 }
 
@@ -29,6 +30,7 @@ struct ThirdView_Previews: PreviewProvider {
         NavigationStack {
             ThirdView()
                 .environmentObject(AppState())
+                .navBarAttributes()
         }
     }
 }

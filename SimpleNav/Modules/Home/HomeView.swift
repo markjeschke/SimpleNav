@@ -12,25 +12,33 @@ struct HomeView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        VStack {
-            NavigationLink("Go to Fourth View", destination: FourthView())
-                .tint(.cyan)
-        }
-        .padding()
-        .navigationBarTitleDisplayMode(.inline) // <- If this is removed, the default display mode is large title.
-        .navigationTitle("Home View")
-        .navBarAttributes()
-        .tint(.white)
-        .onAppear {
-            appState.isShowingBottomTabBar = true
-        }
-        .toolbar(appState.isShowingBottomTabBar ? .visible : .hidden, for: .tabBar)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+        NavigationStack {
+            VStack {
                 NavigationLink {
-                    SettingsView()
+                    FourthView()
                 } label: {
-                    Image(systemName: "gear")
+                    Text("Go to Fourth View")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .tint(.cyan)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline) // <- If this is removed, the default display mode is large title.
+            .navigationTitle("Home View")
+            .tint(.white)
+            .onAppear {
+                appState.isShowingBottomTabView = true
+
+            }
+            .toolbar(appState.isShowingBottomTabView ? .visible : .hidden, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "gear")
+                            .tint(.white)
+                    }
                 }
             }
         }
@@ -39,9 +47,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            HomeView()
-                .environmentObject(AppState())
-        }
+        HomeView()
+            .environmentObject(AppState())
+            .navBarAttributes()
     }
 }
